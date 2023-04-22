@@ -47,6 +47,8 @@ async function register() {
   async function login(){
     navigate("/home");
 
+    // Need to check users table for log in
+
   //   console.log("inside login async,", loggedinuser);
   //   const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
   //     method: "POST",

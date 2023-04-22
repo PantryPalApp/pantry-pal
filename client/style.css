@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Dosis:wght@200&display=swap');
 .Navbar {
     box-sizing: border-box;
     margin: 0;
@@ -9,7 +10,7 @@
   }
   
   .Navbar a {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Dosis', sans-serif;
     font-weight: 500;
     font-size: 13px;
     text-decoration: none;
@@ -23,3 +24,144 @@
   .Navbar a.Navbar-active {
     color: white;
   }
+
+  /*---HOMEPAGE---*/
+.landingPage{
+	width: auto;
+	padding: 1em 0;
+	text-align: center;
+	height: 50vh;
+	margin: auto;
+	display: block;
+	background-image: url(https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg);
+	background-position: top;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	-webkit-clip-path: ellipse(100% 100% at 50% 0%);
+	clip-path: ellipse(100% 100% at 50% 0%);
+}
+.wrapper {
+    width: 80vw;
+	margin: auto;
+    align-content: center;
+	max-width: 1200px;
+	margin: 2em auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+.section-name {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+  /*---RECIPESPAGE---*/
+  /*---ARTICLE---*/
+article {
+  margin: 0.5em;
+  width: 50vw;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in;
+  font-family: 'Dosis', sans-serif;
+}
+article:hover {
+  border-color: transparent;
+  border-collapse: collapse;
+  top: 10px;
+  -webkit-box-shadow: 10px 10px 115px -30px rgba(0,0,0,0.37);
+  -moz-box-shadow: 10px 10px 115px -30px rgba(0,0,0,0.37);
+  box-shadow: 10px 10px 115px -30px rgba(0,0,0,0.37);
+}
+article:hover .card {
+  background-color: #DDDDDD;
+}
+article header {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+/*---CARD---*/
+.card {
+	max-width: 200px;
+	display: block;
+	min-height: 250px;
+	flex-shrink: 0;
+	border-radius: 5px;
+	border-width: 1px;
+  border-style: solid;
+  border-color: #EEEEEE;
+}
+.card img {
+	background-color: chocolate;
+	max-width: 100%;
+	max-height: 200px;
+	width: auto;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+.card-content {
+	padding: 0.8em;
+	display: inline-block;
+	text-align: left;
+	margin: auto;
+	border-radius: 5px;
+}
+.card-content span {
+	margin: 0.3em 0;
+}
+.card-category {
+	padding: 3px 5px;
+	color: white;
+  background-color: brown;
+	text-transform: uppercase;
+	font-size: 0.7em;
+	width: auto;
+	border-radius: 2px;
+}
+.card-ingredient {
+	font-size: 1rem;
+	display: block;
+}
+.card-header {
+	font-weight: bold;
+	text-transform: capitalize;
+	font-size: 1.5rem;
+	display: block;
+}
+.card-calories {
+	padding: 3px 5px;
+	color: white;
+  background-color: rgb(34, 108, 187);
+	text-transform: uppercase;
+	font-size: 0.7em;
+	width: auto;
+	border-radius: 2px;
+  margin-right: 1em;
+}
+.card-dietLabel {
+	padding: 3px 5px;
+	color: white;
+  background-color: rgb(14, 120, 122);
+	text-transform: uppercase;
+	font-size: 0.7em;
+	width: auto;
+	border-radius: 2px;
+}
+.showIngredients {
+  background-color: rgb(79, 83, 85);
+  color: white;
+	padding: 0.4em;
+	border-radius: 6px;
+	border: 1px;
+	cursor: pointer;
+	font-family: 'Dosis', sans-serif;
+	font-weight: 500;
+	font-size: 0.7em;
+	letter-spacing: 1px;
+	transition: all 0.1s ease-in;  
+}
