@@ -1,1 +1,94 @@
 const db = require('./server/models/user.js')
+
+  //Step 1: set up table
+  //run a query for each createTable
+  //db.query(createUsers)
+
+  //Step 2: fill recipes database
+  //query the api
+  fetch('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=0fc911a9&app_key=2db3f0fd802520d8b7589405b0fd69ab')
+      .then((res) => res.json())
+      .then((data) => {
+        
+        //parse and fill table
+      
+        //data.hits[0].recipe is a recipe
+        //recipe.label is the name
+        //recipe.image is an image src
+        //recipe.ingredients is a list of ingredients
+
+        //for each recipe in data.hits
+          //add to recipes table
+          //for ingredients 
+            //add ingredients to ingredients table if not there
+            //add recipeIngredients relation
+      
+      });
+
+
+
+
+  const createUsers = {
+    text: `CREATE TABLE users (
+            id SERIAL PRIMARY KEY,
+            firstName TEXT,
+            lastName TEXT,
+            email TEXT UNIQUE,
+            password TEXT
+    );`
+  }
+
+  const createIngredients = {
+    text: `CREATE TABLE ingredients (
+            id SERIAL PRIMARY KEY,
+            name TEXT UNIQUE
+    );`
+  }
+
+  const createRecipes = {
+    text: `CREATE TABLE recipes (
+            id SERIAL PRIMARY KEY,
+            name TEXT UNIQUE,
+            instructions TEXT
+    );`
+  }
+
+  const createRecipeIngredients = {
+    text: `CREATE TABLE recipe_ingredients (
+            id SERIAL PRIMARY KEY,
+            recipe_id INTEGER REFERENCES recipes(id),
+            ingredient_id INTEGER REFERENCES ingredients(id)
+    );`
+  }
+
+  const createShoppingList = {
+    text: `CREATE TABLE shopping_list (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id),
+            ingredient_id INTEGER REFERENCES ingredients(id)
+    );`
+  }
+
+  const insertUser1 = {
+    text: `INSERT INTO user (firstname, lastname, email, password)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;`,
+    values: [var1, var2, var3, var4],
+  };
+
+  const queryUser = {
+    text: `SELECT * FROM users WHERE email = $1`,
+    values: [var1],
+  };
+
+  const deleteUser = {
+    text: `DELETE FROM users
+    WHERE email = $1
+    RETURNING *;`,
+    values: [var1],
+  };
+
+
+
+
+
