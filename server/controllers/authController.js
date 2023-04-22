@@ -7,7 +7,7 @@ const authController = {};
 
 authController.login = (req, res, next) => {
   const{email, password} = req.params;
-
+//compare the password
   next();
 }
 
