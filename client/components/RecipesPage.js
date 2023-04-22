@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import "../style.css";
 //app id 0fc911a9
 //app key 2db3f0fd802520d8b7589405b0fd69ab
 
@@ -30,24 +31,38 @@ import Navbar from './Navbar';
   // },
 
 const RecipesPage = () => {
-  const [recipe, setRecipe] = useState({})
-  
+  const [recipe, setRecipe] = useState({});
+  const [showInd, setShowInd] = useState(false);
 
   const getRecipes = () => {
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=0fc911a9&app_key=2db3f0fd802520d8b7589405b0fd69ab')
       .then((res) => res.json())
-      .then((data) => setRecipe(data.hits[0].recipe));
+      .then((data) => {console.log(data.hits[0].recipe);setRecipe(data.hits[0].recipe)})
+      .catch(err => console.log(err));
   }
   
-  useEffect(()=>getRecipes(),[]);
+  useEffect(() => getRecipes(),[]);
+
+  const ingredients = showInd ? (<ul className="card-ingredients">{recipe.ingredientLines}</ul>) : (<ul style={{display: 'none'}} />)
 
   return(
     <div>
       Recipes
       <Navbar/>
       <div>
-        <p>{recipe.label}</p>
-        <img src={recipe.image}/>
+        <article className="card">
+			    <div className="box"><img src={recipe.image} /></div>
+			      <header className="card-content">
+              <span className="card-category">{recipe.cuisineType}</span>
+              <span className="card-header">{recipe.label}</span>
+              <button className="showIngredients" onClick={() => setShowInd(!showInd)}>show ingredients</button>
+              {ingredients}
+            </header>
+          <footer className="card-content">
+            <span className="card-calories">Calories: {Math.floor(recipe.calories)}</span>
+            <span className="card-dietlabel">{recipe.dietLabels}</span>
+          </footer>
+      </article>
       </div>
 
     </div>
