@@ -7,6 +7,7 @@ import ShoppingListPage from "./components/ShoppingListPage";
 import {BrowserRouter} from "react-router-dom";
 
 const App = () =>{
+  //add protected route 
   return(
     <BrowserRouter>
       <Routes>
