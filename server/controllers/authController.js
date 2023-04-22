@@ -1,17 +1,29 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-const users = require('../')
+const db = require('../models/')
 
 const userController = {};
 
-authController.login = (req, res, next) => {
-  const{email, password} = req.params;
-  const loginUser = {
-    text: `SELECT * FROM users WHERE email = ${email};`
+authController.login = async (req, res, next) => {
+
+  try {
+    const{email, password} = req.body;
+    const loginUser = {
+      text: `SELECT * FROM users WHERE email = $1;`,
+      values: [email]
+    }
+    const data = await db.query(loginUser)
+    //compare the password
+    const isMatch = await bcrypt.compare(password, data.rows[0].password);
+
+    if(!isMatch) return res.status(400).json({msg: 'Invalid Credentials!'});
+    // data.rows[0] is all of a single user's info
+    res.locals.loginUser = data.rows[0];
+    return next();
+
+  } catch(err) {
+    res.status(500).json({error: err.message});
   }
-//compare the password
-  next();
 }
 
 authController.register = async(req, res, next) => {
@@ -25,7 +37,9 @@ authController.register = async(req, res, next) => {
     RETURNING *;`,
     values: [firstName, lastName, email, passwordHash],
     };
-    res.locals.insertUser = insertUser;
+    
+    const data = await db.query(insertUser);
+    res.locals.insertUser = data.rows[0];
     return next();
   }catch(err){
         res.status(500).json({error: err.message});
@@ -33,25 +47,23 @@ authController.register = async(req, res, next) => {
   }
 
 
-  
+// authController.verifyToken = async (req,res,next) =>{
+//   try{
+//       let token = req.headers('Authorization');
 
-authController.verifyToken = async (req,res,next) =>{
-  try{
-      let token = req.headers('Authorization');
+//       if(!token) return res.status(403).send('Access Denied!');
 
-      if(!token) return res.status(403).send('Access Denied!');
+//       if(token.StartsWith('Bearer ')){
+//           token = token.slice(7, token.length).trimLeft();
+//       }
 
-      if(token.StartsWith('Bearer ')){
-          token = token.slice(7, token.length).trimLeft();
-      }
+//       const verified = jwt.verify(token, process.env.JWT_SECRET);
+//       req.user = verified;
+//       next();
 
-      const verified = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = verified;
-      next();
-
-  } catch(err){
-      res.status(500).json({error: err.message});
-  }
-}
+//   } catch(err){
+//       res.status(500).json({error: err.message});
+//   }
+// }
 
 module.exports = authController;

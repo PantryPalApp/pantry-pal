@@ -1,7 +1,5 @@
-import { Pool } from require('pg');
-import dotenv from 'dotenv';
+const {Pool} = require('pg');
 
-dotenv.config();
 const PG_URI = 'postgres://wfxgrjql:0VteUAcLBK6T1fshNYwPvtLf4_6i7Dj6@kashin.db.elephantsql.com/wfxgrjql';
 
 const pool = new Pool({
