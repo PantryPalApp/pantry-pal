@@ -13,7 +13,7 @@ const userRouter = require('./routes/users.js');
 
 
 /* IMPORT MIDDLEWARE/CONTROLLER PATHS */
-const authMiddleware =  require('./middleware/auth.js');
+//const authMiddleware =  require('./middleware/auth.js');
 const authController = require('./controllers/authController.js');
 
 
@@ -35,9 +35,8 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 /* ROUTES */
 //handle route to direct authenticated users to recipe page
-app.use('/recipes', authMiddleware.verifyToken);
 app.use('/auth', authRouter);
-app.use('/users', userRouter);
+app.use('/api', recipesRouter);
 
 
 // catch-all route handler for any requests to an unknown route
