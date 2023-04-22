@@ -31,12 +31,12 @@
 	width: auto;
 	padding: 1em 0;
 	text-align: center;
-	height: 50vh;
+	height: 30vh;
 	margin: auto;
 	display: block;
-	background-image: url(https://static.pexels.com/photos/76093/pexels-photo-76093.jpeg);
+	background-image: url(https://hips.hearstapps.com/hmg-prod/images/delish-221130-perfect-chicken-alfredo-0683-eb-1670449995.jpg);
 	background-position: top;
-	background-size: cover;
+	background-size: 80%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	-webkit-clip-path: ellipse(100% 100% at 50% 0%);
@@ -87,15 +87,17 @@ article header {
 }
 
 /*---CARD---*/
-.card {
+.card, .ingredientsBox {
+	font-family: 'Dosis', sans-serif;
 	max-width: 200px;
 	display: block;
 	min-height: 250px;
 	flex-shrink: 0;
 	border-radius: 5px;
 	border-width: 1px;
-  border-style: solid;
-  border-color: #EEEEEE;
+    border-style: solid;
+    border-color: #EEEEEE;
+	background-color: rgb(240, 219, 219);
 }
 .card img {
 	background-color: chocolate;
@@ -111,18 +113,32 @@ article header {
 	text-align: left;
 	margin: auto;
 	border-radius: 5px;
+	
 }
 .card-content span {
 	margin: 0.3em 0;
 }
+.card-content div {
+	margin: 0.3em 0;
+}
+footer.card-content {
+	padding: 0.8em;
+	display: flex;
+	text-align: left;
+	margin: auto;
+	border-radius: 5px;
+	gap: 15px;
+	
+}
 .card-category {
 	padding: 3px 5px;
 	color: white;
-  background-color: brown;
+    background-color: brown;
 	text-transform: uppercase;
 	font-size: 0.7em;
 	width: auto;
 	border-radius: 2px;
+	margin-right: 10px;
 }
 .card-ingredient {
 	font-size: 1rem;
@@ -165,4 +181,9 @@ article header {
 	font-size: 0.7em;
 	letter-spacing: 1px;
 	transition: all 0.1s ease-in;  
+}
+
+body{
+	background-color: azure;
+
 }
