@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 
 /* ROUTES */
 //handle route to direct authenticated users to recipe page
-
+app.use('/recipes', authMiddleware.verifyToken);
 app.use('/auth', authRouter);
 app.use('/users', userRouter);
 
