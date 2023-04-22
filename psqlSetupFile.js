@@ -86,6 +86,12 @@ async function setup() {
     );`
   }
 
+//   SELECT a.*, array_agg(b.ingredient_text) AS ingredients
+// FROM recipes a
+// LEFT JOIN recipe_ingredients b ON a.id = b.recipe_id
+// GROUP BY a.id
+
+
   const createShoppingList = {
     text: `CREATE TABLE shopping_list (
             id SERIAL PRIMARY KEY,
@@ -93,6 +99,7 @@ async function setup() {
             ingredient_id INTEGER REFERENCES recipe_ingredients(id)
     );`
   }
+
 
   //createUsers, createRecipes, createRecipeIngredients, createShoppingList
   // db.query(createUsers)
