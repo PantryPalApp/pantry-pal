@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 const ShoppingListPage = () => {
   return(
     <div>
-      Shopping List
       <Navbar/>
     </div>
   )

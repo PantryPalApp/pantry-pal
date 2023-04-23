@@ -21,7 +21,7 @@ const RecipeCard = ({image, cuisineType, label, ingredients, calories, instructi
         <div className="box"><img src={image} /></div>
         <header className="card-content">          
           <a href={instructions} target="_blank"><span className="card-header">{label}</span></a>
-          {ingredients && <button className="showIngredients" onClick={() => setShowInd(!showInd)}>show ingredients</button>}
+          {ingredients && <button className="showIngredients" onClick={() => setShowInd(!showInd)}>Show Ingredients</button>}
           {showInd ? 
           <IngredientsList ingredients={ingredients} label={label} /> : 
           (<ul style={{display: 'none'}} />)}

@@ -76,7 +76,6 @@ const RecipesPage = () => {
 
   return(
     <div className='recipes-page'>
-      Recipes
       <Navbar/>
       <div>
         <RecipeCard {...recipe} instructions={recipe.url} ingredients={recipe.ingredientLines}/>
