@@ -79,7 +79,7 @@ async function register() {
 
     
 return (
- <form className="col-4" onSubmit={(e) => handleFormSubmit(e)}> 
+ <form className="loginForm" onSubmit={(e) => handleFormSubmit(e)}> 
 
     {registering && (
     <>

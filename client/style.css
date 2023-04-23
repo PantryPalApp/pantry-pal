@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Dosis:wght@200&display=swap');
+html,
+body{
+	margin: 0px;
+	background-color: azure;
+}
+
+
 .Navbar {
     box-sizing: border-box;
     margin: 0;
@@ -12,7 +19,7 @@
   .Navbar a {
     font-family: 'Dosis', sans-serif;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 20px;
     text-decoration: none;
     color: #fff;
     transition: all 0.3s ease 0s;
@@ -23,6 +30,11 @@
   }
   .Navbar a.Navbar-active {
     color: white;
+  }
+
+  .Navbar h1{
+	color:#fff;
+	
   }
 
 
@@ -90,7 +102,9 @@ article header {
 .card, .ingredientsBox {
 	font-family: 'Dosis', sans-serif;
 	max-width: 200px;
-	display: block;
+	padding: 5px;
+	display: flex;
+	flex-direction: column;
 	min-height: 250px;
 	flex-shrink: 0;
 	border-radius: 5px;
@@ -103,14 +117,15 @@ article header {
 	background-color: chocolate;
 	max-width: 100%;
 	max-height: 200px;
-	width: auto;
+	width: 100%;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
 .card-content {
 	padding: 0.8em;
-	display: inline-block;
-	text-align: left;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
 	margin: auto;
 	border-radius: 5px;
 	
@@ -123,19 +138,21 @@ article header {
 }
 footer.card-content {
 	padding: 0.8em;
-	display: flex;
+	display:flex;
+	flex-direction: row;
 	text-align: left;
 	margin: auto;
 	border-radius: 5px;
 	gap: 15px;
-	
+	font-size: 0.8em;
+	justify-content: center;
 }
 .card-category {
 	padding: 3px 5px;
 	color: white;
     background-color: brown;
 	text-transform: uppercase;
-	font-size: 0.7em;
+	font-size: 1em;
 	width: auto;
 	border-radius: 2px;
 	margin-right: 10px;
@@ -155,7 +172,7 @@ footer.card-content {
 	color: white;
   background-color: rgb(34, 108, 187);
 	text-transform: uppercase;
-	font-size: 0.7em;
+	font-size: 1em;
 	width: auto;
 	border-radius: 2px;
   margin-right: 1em;
@@ -178,12 +195,50 @@ footer.card-content {
 	cursor: pointer;
 	font-family: 'Dosis', sans-serif;
 	font-weight: 500;
-	font-size: 0.7em;
+	font-size: 0.9em;
 	letter-spacing: 1px;
 	transition: all 0.1s ease-in;  
 }
 
-body{
-	background-color: azure;
 
+/*------LOGIN PAGE -----*/
+
+.loginContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;	
+	width: 30em;
+	margin: 10% auto;
+	border-radius: 20px;
+	-webkit-box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
+	-moz-box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
+	box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
 }
+
+.loginForm div{
+	display: flex;
+	flex-direction: column;
+	margin-bottom:10px;
+	justify-content: center;
+}
+
+.loginForm input, label{
+	padding: 5px;
+}
+
+.loginForm button{
+	padding: 5px 0px;
+	margin: 15px 0px;
+ 	background-color: #6e579a;
+ 	color: #fff;
+	cursor: pointer;
+	-webkit-box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
+	-moz-box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
+	box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
+}
+
+.loginForm button:hover{
+	background-color: #4b2e81;
+}
+
