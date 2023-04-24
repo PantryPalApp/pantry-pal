@@ -18,15 +18,24 @@ const HomePage = () => {
           Chicken Alfredo
         </p>
       </section>
-      <section className="wrapper">
-        {/* show one recipe card and list for the item in background */}
-        {/* <h5 className="section-name">View our featured recipe!</h5> */}
-        <RecipeCard {...mainRecipe}/>
-        <div className="ingredientsBox">
-          <p>Click below ingredients to add to your shopping list!</p>
-         <IngredientsList ingredients={['1 cup Flour', '1 cup water']}/>
-        </div>
-      </section>
+      <div className="featured">
+        <section className="wrapper">
+          {/* show one recipe card and list for the item in background */}
+          {/* <h5 className="section-name">View our featured recipe!</h5> */}
+          <RecipeCard {...mainRecipe}/>
+          <article className="card">
+            <p style={{fontWeight: '1000'}}>Click ingredients to add to your shopping list!</p>
+          <IngredientsList ingredients={['1 cup Flour', '1 cup water']}/>
+          </article>
+        </section>
+        <section className="wrapper">
+          <RecipeCard {...mainRecipe}/>
+          <article className="card">
+            <p style={{fontWeight: '1000'}}>Click ingredients to add to your shopping list!</p>
+          <IngredientsList ingredients={['1 cup Flour', '1 cup water']}/>
+          </article>
+        </section>
+      </div>
     </div>
     
   )
