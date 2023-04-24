@@ -9,7 +9,7 @@ const multer = require('multer');
 
 /* IMPORT ROUTE PATHS */
 const authRouter = require('./routes/auth.js');
-const userRouter = require('./routes/users.js');
+const recipesRouter = require('./routes/recipes.js');
 
 
 /* IMPORT MIDDLEWARE/CONTROLLER PATHS */
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 /* ROUTES */
 //handle route to direct authenticated users to recipe page
 app.use('/auth', authRouter);
-app.use('/api/:id', recipesRouter);
+app.use('/api', recipesRouter);
 
 
 // catch-all route handler for any requests to an unknown route

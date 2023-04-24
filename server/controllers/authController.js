@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const db = require('../models/')
+const db = require('../models/user.js')
 
-const userController = {};
+const authController = {};
 
 authController.login = async (req, res, next) => {
 
@@ -28,7 +28,7 @@ authController.login = async (req, res, next) => {
 
 authController.register = async(req, res, next) => {
   try{
-    const  {firstname, lastname, email, password} = req.body;
+    const  {firstName, lastName, email, password} = req.body;
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
     const insertUser = {
