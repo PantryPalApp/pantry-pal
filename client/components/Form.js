@@ -120,7 +120,9 @@ return (
         <input type="password" className="form-control" onChange={(e)=> updateForm({password: e.target.value})} id="password" aria-describedby="password"/>
     </div>
     <div>
-        <button type="submit" className="btn btn-xl btn-primary">{!registering ? "LOGIN" : "REGISTER"}</button>
+        <button type="submit" className="btn btn-xl btn-primary">
+          {!registering ? "LOGIN" : "REGISTER"}
+        </button>
     </div>
     <div className='mt-5 signup'>
       <a href="#"
