@@ -48,14 +48,12 @@ recipeController.getShoppingCart = async (req, res, next) => {
 recipeController.deleteShoppingList = async (req, res, next) => {
  try {
     const {id} = req.params; //localhost:3000/api/12/shoppinglist
-    const {recipeText} = req.body; 
+    const {ingredient_id} = req.body; 
     const deleteList = {
         text: `DELETE FROM shopping_list 
-        WHERE user_id = $1 AND ingredient_id = (SELECT id 
-                                                FROM recipe_ingredients
-                                                WHERE ingredient_text=$2);`,
+        WHERE user_id = $1 AND ingredient_id = $2;`,
        
-        values: [id, recipeText],
+        values: [id, ingredient_id],
        };
        const data = await db.query(deleteList);
        return next();
