@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import IngredientsList from './IngredientsList';
 import "../style.css";
 
-const RecipeCard = ({image, cuisineType, label, ingredients, calories, instructions}) => {
+const RecipeCard = ({id, image, cuisine, label, ingredients, calories, instructions, userID}) => {
     const [showInd, setShowInd] = useState(false);
     // const clickEvent = (event) => {
     //   console.log('event.target', event.target);
@@ -23,11 +23,11 @@ const RecipeCard = ({image, cuisineType, label, ingredients, calories, instructi
           <a href={instructions} target="_blank"><span className="card-header">{label}</span></a>
           {ingredients && <button className="showIngredients" onClick={() => setShowInd(!showInd)}>Show Ingredients</button>}
           {showInd ? 
-          <IngredientsList ingredients={ingredients} label={label} /> : 
+          <IngredientsList ingredients={ingredients} userID={userID} recipeID={id} /> : 
           (<ul style={{display: 'none'}} />)}
         </header>
         <footer className="card-content footer">
-          <div className="card-category">{cuisineType}</div>
+          <div className="card-category">{cuisine}</div>
           <div className="card-calories">Calories: {Math.floor(calories)}</div>
         </footer>
       </article>

@@ -4,6 +4,7 @@ const db = require('../models/user.js');
 
 //post get delete shopping list
 recipeController.postShoppingList = async(req, res, next) => {
+    console.log('starting post shopping list')
   try{
     const {id} = req.params; //localhost:3000/api/12/shoppinglist
     const {ingredient_id} = req.body; 
@@ -17,9 +18,9 @@ recipeController.postShoppingList = async(req, res, next) => {
      VALUES ($1, $2)`,
      values: [id, ingredient_id],
     };
-    const data = await db.query(newList);
+    await db.query(newList);
 
-    return next();
+    next();
 
     }catch(err){
         res.status(500).json({error: err.message});
@@ -39,7 +40,7 @@ recipeController.getShoppingCart = async (req, res, next) => {
         }
         const data = await db.query(getList);
         res.locals.list = data.rows;
-        next();
+        return next();
     } catch(err){
         res.status(500).json({error: err.message});
     }
@@ -66,11 +67,11 @@ recipeController.deleteShoppingList = async (req, res, next) => {
 recipeController.getRecipes = async (req, res, next) => {
     try{
         const recipes = {
-            text: `SELECT a.*, array_agg(b.ingredient_text) AS ingredients
-                    FROM recipes a
-                    LEFT JOIN recipe_ingredients b ON a.id = b.recipe_id
-                    GROUP BY a.id`
-        } //gets recipes and an array of ingredients
+            text: `SELECT a.*, array_agg(json_build_object('id', b.id, 'text', b.ingredient_text)) AS ingredients
+            FROM recipes a
+            LEFT JOIN recipe_ingredients b ON a.id = b.recipe_id
+            GROUP BY a.id`
+        } //gets recipes and an array of ingredient objects with {id, text}
         const data = await db.query(recipes);
         res.locals.recipes = data.rows;
         next();

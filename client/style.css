@@ -87,6 +87,13 @@ body{
 }
 
   /*---RECIPESPAGE---*/
+  .show-recipes {
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: top;
+	
+  }
   /*---ARTICLE---*/
 article {
   margin: 0.5em;
@@ -116,6 +123,7 @@ article header {
 	max-width: 200px;
 	padding: 5px;
 	display: inline-block;
+
 	text-align: left;
 	min-height: 250px;
 	flex-shrink: 0;

@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Form from './Form';
 
-const LoginPage = () => {
+const LoginPage = ({userLogin}) => {
   return(
     <>
     <nav className="Navbar">          
@@ -12,7 +12,7 @@ const LoginPage = () => {
     </nav>
     <div className="loginContainer">
       <h4 className="">Welcome to Pantry Pal!<br/>Log In Below and Explore Amazing Recipes Worldwide...</h4>
-      <Form/>
+      <Form userLogin={userLogin}/>
     </div>
     </>
   )
