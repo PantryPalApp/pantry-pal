@@ -16,12 +16,12 @@ const IngredientsList = ({ingredients, label}) => {
   }
 
     return(
-    <div className="card-ingredients">
-      {ingredients.map((x,i)=>(
-      <div key={i}>
-        <input id={x} name={i} onClick={clickEvent} type="checkbox"/>{x}
-      </div>))}
-    </div>
+        <div className="card-ingredients">
+        {ingredients.map((x,i)=>(
+          <div key={i}>
+            <input id={x} name={i} onClick={clickEvent} type="checkbox"/>{x}
+          </div>))}
+        </div>
     )
 }
 
