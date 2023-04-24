@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 /* ROUTES */
 //handle route to direct authenticated users to recipe page
 app.use('/auth', authRouter);
-app.use('/api', recipesRouter);
+app.use('/api/:id', recipesRouter);
 
 
 // catch-all route handler for any requests to an unknown route
