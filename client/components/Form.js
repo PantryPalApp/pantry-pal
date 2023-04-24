@@ -27,7 +27,7 @@ async function register() {
     const newUser = {...form};
 
     //add user to user table when submitted
-    const registerResponse = await fetch("http://localhost:3000/auth/register",
+    const registerResponse = await fetch("/auth/register",
       {
         method: "POST",
         headers: {
@@ -48,7 +48,7 @@ async function register() {
 
   async function login(){
     const loggedinuser = {...form};
-    const loggedInResponse = await fetch("http://localhost:3000/auth/login", {
+    const loggedInResponse = await fetch("/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loggedinuser),
@@ -58,10 +58,10 @@ async function register() {
     console.log(loggedIn);
     if(typeof loggedIn.id === 'number'){
       userLogin(loggedIn.id);
+      setForm({firstName: "", lastName: "", email: "", password:""});
       navigate("/home");
     } 
     setForm({firstName: "", lastName: "", email: "", password:""});
-    
   };
 
   async function handleFormSubmit(e) {

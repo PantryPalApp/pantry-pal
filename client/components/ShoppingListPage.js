@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from './Navbar';
 import ShoppingItem from './ShoppingItem';
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "../style.css";
 
 const ShoppingListPage = ({userID}) => {
   const [items, setItems] = useState([]);
@@ -34,7 +35,7 @@ const ShoppingListPage = ({userID}) => {
       <Navbar/>
       <section className="landingPage2">
       </section>
-      <h3>You have {items.length} items in your shopping list:</h3>
+      <h3 className="subtitle">You have {items.length} item{items.length === 1 ? '' : 's'} in your shopping list:</h3>
       <div className="List">
         <ul>        
           <TransitionGroup>{itemArr}</TransitionGroup>

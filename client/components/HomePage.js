@@ -6,20 +6,21 @@ import "../style.css";
 
 const HomePage = ({userID}) => {
 
+  //state holds all recipes, we feature two of them on the home page
   const [recipes, setRecipes] = useState([]);
+
   const getRecipes = async () => {
     try {
       const response = await fetch(`/api/${userID}/recipes`)
       const data = await response.json();
-      //console.log(data);
       setRecipes(data);
-      
     } catch(error) {
       console.log(`Err to get recipes: ${error}`);
     }
   }
 
-  useEffect(() => {getRecipes()},[]);
+  useEffect(() => { getRecipes() }
+    , []);
 
   return(
     <div>
@@ -32,14 +33,15 @@ const HomePage = ({userID}) => {
 
       <div className="featured">
         <section className="wrapper">
-          <RecipeCard {...recipes[0]} userID={userID}/>
+          {/* showButton hides the card's ingredient list since we show it side by side */}
+          <RecipeCard {...recipes[0]} userID={userID} showButton={false}/>
           <article className="card">
             <p style={{fontWeight: '1000'}}>Click ingredients to add to your shopping list!</p>
           <IngredientsList {...recipes[0]} userID={userID}/>
           </article>
         </section>
         <section className="wrapper">
-          <RecipeCard {...recipes[1]} userID={userID} />
+          <RecipeCard {...recipes[1]} userID={userID} showButton={false}/>
           <article className="card">
             <p style={{fontWeight: '1000'}}>Click ingredients to add to your shopping list!</p>
           <IngredientsList {...recipes[1]} userID={userID}/>

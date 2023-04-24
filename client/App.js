@@ -6,8 +6,8 @@ import RecipesPage from "./components/RecipesPage";
 import ShoppingListPage from "./components/ShoppingListPage";
 import {BrowserRouter} from "react-router-dom";
 
-const App = () =>{
-  //add protected route 
+const App = () => {
+  //State to store our user ID
   const [userID, setUserID] = useState(1)
   function userLogin(userID) {
     setUserID(userID);
@@ -16,10 +16,13 @@ const App = () =>{
   return(
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/' element={<LoginPage userLogin={userLogin}/>}/> */}
-        <Route path='/' element={<ShoppingListPage userID={userID}/>}/>
+        {/* Default route is the login page */}
+        <Route path='/' element={<LoginPage userLogin={userLogin}/>}/>
+        {/* After logging in, the user can go to these routes with NavBar */}
         <Route path='/home' element={<HomePage userID={userID}/>}/>
+        {/* displays all the recipe cards */}
         <Route path='/recipes' element={<RecipesPage userID={userID}/>}/>
+        {/* Items gets added to shopping list from the recipe card */}
         <Route path='/shopping-list' element={<ShoppingListPage userID={userID}/>}/>
       </Routes>
     </BrowserRouter>

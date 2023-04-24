@@ -30,9 +30,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /**
- * handle requests for static files
+ * handle requests for bundle.js
  */
-app.use(express.static(path.join(__dirname, '../client')));
+app.get('/', (req, res) => {
+  console.log('serving main website at ' + path.resolve(__dirname, '../dist/index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../dist/index.html'));
+});
+
+app.get('/bundle.js', (req, res, next) => {
+  console.log('serving bundle at ' + path.resolve(__dirname, '../dist/bundle.js'));
+  res.status(200).sendFile(path.resolve(__dirname, '../dist/bundle.js'));
+});
 
 /* ROUTES */
 //handle route to direct authenticated users to recipe page
@@ -41,7 +49,9 @@ app.use('/api', recipesRouter);
 
 
 // catch-all route handler for any requests to an unknown route
-app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
+
+
+app.use((req, res) => res.status(404));
 
 // Global error handler
 app.use((err, req, res, next) => {
