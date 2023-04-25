@@ -35,3 +35,22 @@ It also serves bundle.js and index.html for production mode.
   has the sql queries to set up the table and insert recipes.  
   
   Uses edamam api to get 20 recipes (check api for query options).  
+
+<h3>To Do</h3>
+Have cookies and routes for real authentication
+
+Refactor code structure (organize components -> pages, displays, containers)
+
+Use a psql server thats not ElephantSQL, because if you click around too fast it breaks
+
+<h3>Bonus</h3>
+Generate Recipes - custom queries for API
+
+Connect shopping list to Walmart cart.
+
+Add nutrition info - API
+
+Calorie tracker visualization
+
+Ingredient popularity - need separate ingredients table. Then use recipe_ingredients as a juncion between recipes and ingredients
+
