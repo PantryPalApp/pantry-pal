@@ -22,6 +22,17 @@ module.exports = (env) => {
                 directory: path.resolve(__dirname, 'client'),
                 publicPath: '/'
             },
+            headers: { 'Access-Control-Allow-Origin': '*' },
+            proxy:{
+            '/auth': {
+                target: 'http://localhost:3000/',
+                secure: false,
+                },
+            '/api': {
+                target: 'http://localhost:3000/',
+                secure: false,
+                },
+            },
         },
         plugins: [
             new HTMLWebpackPlugin({

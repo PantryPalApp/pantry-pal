@@ -4,7 +4,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
+
+const Form = ({userLogin}) => {
   const [registering, setRegistering] = useState(false);
   const [form , setForm] = useState({
       firstName: "",
@@ -14,7 +15,7 @@ const Form = () => {
   });
     
   const navigate = useNavigate();
-
+  
 //This methods will update the state properties,
   function updateForm(value){
     return setForm((prev) => {
@@ -26,7 +27,7 @@ async function register() {
     const newUser = {...form};
 
     //add user to user table when submitted
-    const registerResponse = await fetch("http://localhost:3001/auth/register",
+    const registerResponse = await fetch("/auth/register",
       {
         method: "POST",
         headers: {
@@ -38,37 +39,29 @@ async function register() {
         console.log(error);
         return;
       });
-
     const registeredUser = await registerResponse.json();
+    console.log(registeredUser);
+    userLogin(registeredUser.id);
     setForm({firstName: "", lastName: "", email: "", password:""});
-
+    navigate('/home')
   };
 
   async function login(){
-    navigate("/home");
-
-    // Need to check users table for log in
-
-  //   console.log("inside login async,", loggedinuser);
-  //   const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(loggedinuser),
-  //   });
-  //  const loggedIn = await loggedInResponse.json();
-    // console.log('inside login async, loggedIn:' , loggedIn);
-    // console.log('inside login async, user:' , loggedinuser);
-    
-    //save the logged in user somewhere
-  //  if (loggedIn) {
-  //     dispatch(
-  //       setLogin({
-  //         user: loggedIn.email,
-  //         token: loggedIn.token,
-  //       })
-  //     );
-    //   navigate("/home");
-    // }
+    const loggedinuser = {...form};
+    const loggedInResponse = await fetch("/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loggedinuser),
+    });
+   
+    const loggedIn = await loggedInResponse.json();
+    console.log(loggedIn);
+    if(typeof loggedIn.id === 'number'){
+      userLogin(loggedIn.id);
+      setForm({firstName: "", lastName: "", email: "", password:""});
+      navigate("/home");
+    } 
+    setForm({firstName: "", lastName: "", email: "", password:""});
   };
 
   async function handleFormSubmit(e) {
@@ -120,7 +113,9 @@ return (
         <input type="password" className="form-control" onChange={(e)=> updateForm({password: e.target.value})} id="password" aria-describedby="password"/>
     </div>
     <div>
-        <button type="submit" className="btn btn-xl btn-primary">{!registering ? "LOGIN" : "REGISTER"}</button>
+        <button type="submit" className="btn btn-xl btn-primary">
+          {!registering ? "LOGIN" : "REGISTER"}
+        </button>
     </div>
     <div className='mt-5 signup'>
       <a href="#"

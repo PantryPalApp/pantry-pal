@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Dosis:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Cabin&family=Dosis:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Dosis:wght@200&family=Sigmar&display=swap');
 html,
 body{
 	margin: 0px;
-	background-color: azure;
+	background:  #b3dbd3;
 }
-
 
 .Navbar {
     box-sizing: border-box;
@@ -33,6 +34,11 @@ body{
   }
 
   .Navbar h1{
+	font-family: 'Bruno Ace SC', cursive;
+	letter-spacing: 3px;
+	text-transform: capitalize;
+    -webkit-margin-before:0;
+    -webkit-margin-after:0;
 	color:#fff;
 	
   }
@@ -54,8 +60,14 @@ body{
 	-webkit-clip-path: ellipse(100% 100% at 50% 0%);
 	clip-path: ellipse(100% 100% at 50% 0%);
 }
+.featured {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: space-between;
+}
 .wrapper {
-    width: 80vw;
+    /* width: 80vw; */
+	width: 50%;
 	margin: auto;
     align-content: center;
 	max-width: 1200px;
@@ -66,7 +78,7 @@ body{
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: start;
 }
 .section-name {
 	display: block;
@@ -75,10 +87,17 @@ body{
 }
 
   /*---RECIPESPAGE---*/
+  .show-recipes {
+	display:flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: top;
+	
+  }
   /*---ARTICLE---*/
 article {
   margin: 0.5em;
-  width: 50vw;
+  width: 80vw;
   box-sizing: border-box;
   transition: all 0.1s ease-in;
   font-family: 'Dosis', sans-serif;
@@ -99,19 +118,20 @@ article header {
 }
 
 /*---CARD---*/
-.card, .ingredientsBox {
+.card {
 	font-family: 'Dosis', sans-serif;
 	max-width: 200px;
 	padding: 5px;
-	display: flex;
-	flex-direction: column;
+	display: inline-block;
+
+	text-align: left;
 	min-height: 250px;
 	flex-shrink: 0;
 	border-radius: 5px;
 	border-width: 1px;
     border-style: solid;
     border-color: #EEEEEE;
-	background-color: rgb(240, 219, 219);
+	background-color: rgba(248, 248, 248, 0.696);
 }
 .card img {
 	background-color: chocolate;
@@ -128,7 +148,6 @@ article header {
 	text-align: center;
 	margin: auto;
 	border-radius: 5px;
-	
 }
 .card-content span {
 	margin: 0.3em 0;
@@ -137,6 +156,7 @@ article header {
 	margin: 0.3em 0;
 }
 footer.card-content {
+	display: flex;
 	padding: 0.8em;
 	display:flex;
 	flex-direction: row;
@@ -157,38 +177,33 @@ footer.card-content {
 	border-radius: 2px;
 	margin-right: 10px;
 }
-.card-ingredient {
+.card-ingredients {
 	font-size: 1rem;
 	display: block;
+	min-height: 242px;
 }
 .card-header {
 	font-weight: bold;
 	text-transform: capitalize;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	display: block;
+}
+.card-content a {
+	color: rgb(32, 9, 2);
 }
 .card-calories {
 	padding: 3px 5px;
 	color: white;
-  background-color: rgb(34, 108, 187);
+    background-color: rgb(34, 108, 187);
 	text-transform: uppercase;
 	font-size: 1em;
 	width: auto;
 	border-radius: 2px;
-  margin-right: 1em;
-}
-.card-dietLabel {
-	padding: 3px 5px;
-	color: white;
-  background-color: rgb(14, 120, 122);
-	text-transform: uppercase;
-	font-size: 0.7em;
-	width: auto;
-	border-radius: 2px;
+    margin-right: 1em;
 }
 .showIngredients {
-  background-color: rgb(79, 83, 85);
-  color: white;
+    background-color: rgb(79, 83, 85);
+    color: white;
 	padding: 0.4em;
 	border-radius: 6px;
 	border: 1px;
@@ -200,10 +215,9 @@ footer.card-content {
 	transition: all 0.1s ease-in;  
 }
 
-
 /*------LOGIN PAGE -----*/
-
 .loginContainer{
+	font-family: 'Dosis', sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -214,8 +228,16 @@ footer.card-content {
 	-webkit-box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
 	-moz-box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
 	box-shadow: 3px 3px 28px 1px rgba(77,77,77,0.74);
+	background-color: rgba(215, 227, 232, 0.576);
 }
 
+.loginContainer h4{
+	font-weight: 500;
+	text-align: center;
+	font-family: "Quicksand", sans-serif;
+	color: rgb(4, 31, 48);
+	text-shadow: 1px 1px 1px #afaeb7;;
+}
 .loginForm div{
 	display: flex;
 	flex-direction: column;
@@ -223,11 +245,28 @@ footer.card-content {
 	justify-content: center;
 }
 
-.loginForm input, label{
+.loginForm input, label{	
 	padding: 5px;
 }
-
 .loginForm button{
+	font-family: 'Dosis', sans-serif;
+    padding: 0 1.3rem;
+    border: none;
+    background: rgba(58, 225, 211, 0.481);
+    color: rgb(0, 3, 7);
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 1px solid rgba(255, 255, 255, 0.852);
+    margin-left: 5px;
+    cursor: pointer;
+    transition: background 0.4s ease-out;
+    outline: none;
+	height:30px;
+}
+.loginForm button:hover{
+	background: rgba(0, 0, 0, 0.1);
+}
+/* .loginForm button{
 	padding: 5px 0px;
 	margin: 15px 0px;
  	background-color: #6e579a;
@@ -236,9 +275,96 @@ footer.card-content {
 	-webkit-box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
 	-moz-box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
 	box-shadow: 2px 2px 28px 1px rgba(77,77,77,0.74);
-}
+} */
 
-.loginForm button:hover{
+/* .loginForm button:hover{
 	background-color: #4b2e81;
-}
+} */
 
+
+/*------SHOPPING LIST-----*/
+.landingPage2{
+	width: auto;
+	padding: 1em 0;
+	text-align: center;
+	height: 30vh;
+	margin: auto;
+	display: block;
+	background-image: url(https://www.bankrate.com/2020/08/01170557/How-to-save-money-on-groceries.jpeg);
+	background-position: top;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	-webkit-clip-path: ellipse(100% 100% at 50% 0%);
+	clip-path: ellipse(100% 100% at 50% 0%);
+}
+.subtitle {
+	text-align: center;
+	font-family: "Quicksand", sans-serif;
+}
+.List {
+    margin: 4rem auto;
+    padding: 2rem 3rem 1rem;
+    max-width: 600px;
+    background: #1e3b717d;
+    color: #fff;
+    box-shadow: -20px -20px 0px 0px #6464641a;
+    overflow: hidden;
+  }
+  .List ul {
+    margin-top: 0.2rem;
+    list-style: none;
+  }
+
+  /*------TRANSITIONS-----*/
+  .item-enter {
+    opacity: 0;
+  }
+  .item-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  .item-exit {
+    opacity: 1;
+  }
+  .item-exit-active {
+    /* opacity: 0; */
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 500ms ease-in-out;
+  }
+
+  .Item {
+	font-family: 'Dosis', sans-serif;
+	font-size: 20px;
+	display: flex;
+	margin: 0 -3rem 4px;
+	padding: 1.1rem 3rem;
+	height: 60px;
+	justify-content: space-between;
+	align-items: center;
+	background: rgba(255, 255, 255, 0.2);
+	overflow: hidden;
+	position: relative;
+	transition: opacity 500ms ease-in-out;
+  }
+  .Todo-task {
+	position: relative;
+	transition: opacity 0.4s linear;
+  }
+
+  .Todo-buttons {
+	flex-shrink: 0;
+	padding-left: 0.7em;
+	margin-left: auto;
+  }
+  
+  .Todo-buttons button {
+	border: none;
+	font-size: 1em;
+	margin: 0.4em;
+	background: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	color: #fff;
+  }
