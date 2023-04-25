@@ -11,52 +11,11 @@ const db = {
     }
   }
 
+
+
   //Step 1: set up table
   //run a query for each createTable
   //db.query(createUsers)
-
-  //Step 2: fill recipes database
-  // //query the api
-
-async function setup() {
-  try{
-    const res = await fetch('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=0fc911a9&app_key=2db3f0fd802520d8b7589405b0fd69ab')
-    const data = await res.json();
-    let i = 0;    
-    for(const el of data.hits){
-      if(i++ > 20) break;
-      const {label, url, image,  calories, cuisineType, ingredientLines} = el.recipe
-      const insertRecipe = {
-            text: `INSERT INTO recipes (label, instructions, image, calories, cuisine)
-            VALUES ($1, $2, $3, $4, $5)
-            RETURNING *;`,
-            values: [label, url, image, Math.floor(calories), cuisineType[0]],
-      };
-      try{
-        const data = await db.query(insertRecipe)
-        console.log(data.rows[0].id)
-        const id = data.rows[0].id
-        for(const text of ingredientLines){
-          const insertIngredients = {
-            text: `INSERT INTO recipe_ingredients (recipe_id, ingredient_text)
-              VALUES ($1, $2)
-              RETURNING *;`,
-            values: [id, text],
-          };
-          await db.query(insertIngredients)
-        }
-      } catch(err){
-        console.log(err);
-      }
-      
-    }    
-  } catch (err) {
-    console.log(err)
-  }
-  
-}
-  setup();
-
 
   const createUsers = {
     text: `CREATE TABLE users (
@@ -86,11 +45,6 @@ async function setup() {
             ingredient_text TEXT
     );`
   }
-
-//   SELECT a.*, array_agg(b.ingredient_text) AS ingredients
-// FROM recipes a
-// LEFT JOIN recipe_ingredients b ON a.id = b.recipe_id
-// GROUP BY a.id
 
 
   const createShoppingList = {
@@ -122,32 +76,49 @@ async function setup() {
 
 
 
+  //Step 2: fill recipes database
+  // //query the api
+
+  async function setup() {
+    try{
+      const res = await fetch('https://api.edamam.com/api/recipes/v2?type=public&q=beef&app_id=0fc911a9&app_key=2db3f0fd802520d8b7589405b0fd69ab')
+      const data = await res.json();
+      let i = 0;    
+      for(const el of data.hits){
+
+        const {label, url, image, calories, cuisineType, ingredientLines} = el.recipe
+        //image has a token that expires in 3 hours. Need to rebuild database for working images
+        //instructions is a url to the webpage with the instructions
+        const insertRecipe = {
+              text: `INSERT INTO recipes (label, instructions, image, calories, cuisine)
+              VALUES ($1, $2, $3, $4, $5)
+              RETURNING *;`,
+              values: [label, url, image, Math.floor(calories), cuisineType[0]],
+        };
+        try{
+          const data = await db.query(insertRecipe)
+          console.log(data.rows[0].id)
+          const id = data.rows[0].id
+          for(const text of ingredientLines){
+            const insertIngredients = {
+              text: `INSERT INTO recipe_ingredients (recipe_id, ingredient_text)
+                VALUES ($1, $2)
+                RETURNING *;`,
+              values: [id, text],
+            };
+            await db.query(insertIngredients)
+          }
+        } catch(err){
+          console.log(err);
+        }
+        
+      }    
+    } catch (err) {
+      console.log(err)
+    }
+    
+  }
 
 
 
-
-
-
-  // const insertUser1 = {
-  //   text: `INSERT INTO user (firstname, lastname, email, password)
-  //   VALUES ($1, $2, $3, $4)
-  //   RETURNING *;`,
-  //   values: [var1, var2, var3, var4],
-  // };
-
-  // const queryUser = {
-  //   text: `SELECT * FROM users WHERE email = $1`,
-  //   values: [var1],
-  // };
-
-  // const deleteUser = {
-  //   text: `DELETE FROM users
-  //   WHERE email = $1
-  //   RETURNING *;`,
-  //   values: [var1],
-  // };
-
-
-
-
-
+  setup();

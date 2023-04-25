@@ -2,16 +2,14 @@ const recipeController = {};
 const db = require('../models/user.js');
 
 
-//post get delete shopping list
+//post a shopping item to DB
 recipeController.postShoppingList = async(req, res, next) => {
     console.log('starting post shopping list')
   try{
-    const {id} = req.params; //localhost:3000/api/12/shoppinglist
+    const {id} = req.params; 
+    //localhost:3000/api/12/shoppinglist would have id of 12
     const {ingredient_id} = req.body; 
 
-    // const userId = `SELECT id FROM users WHERE users.id = ${uid};`;
-    // const recipeIngredientsId = `SELECT recipe_id FROM recipe_ingredients WHERE recipe_ingredients.id = ${recipe_id};`
-    // const ingredient = `SELECT * FROM shopping_list JOIN recipe_ingredients ON shopping_list.recipe_ingredients(id) = recipe_ingredients.id`
     console.log('id in shopping list post', id)
     const newList = {
      text: `INSERT INTO shopping_list (user_id, ingredient_id)
@@ -26,7 +24,7 @@ recipeController.postShoppingList = async(req, res, next) => {
         res.status(500).json({error: err.message});
     }
 }
-
+// get all the shopping items in one user's shopping list
 recipeController.getShoppingCart = async (req, res, next) => {
     try{
         const {id} = req.params;
@@ -45,7 +43,7 @@ recipeController.getShoppingCart = async (req, res, next) => {
         res.status(500).json({error: err.message});
     }
 }
-
+// delete certain item from one user's shopping cart 
 recipeController.deleteShoppingList = async (req, res, next) => {
  try {
     const {id} = req.params; //localhost:3000/api/12/shoppinglist

@@ -22,10 +22,11 @@ const ShoppingListPage = ({userID}) => {
 
   useEffect(() => {getShoppingItems()}, []);
 
-  const itemArr = items.map(item => {
+  const itemArr = items.map((item, i) => {
     return (
       <CSSTransition key={item.id} timeout={500} classNames='item'>
-        <ShoppingItem key={item.id} ingredient_id={item.id} content={item.ingredient_text} userID={userID} getShoppingItems={getShoppingItems}/>
+        {/* trying to have a unique key so if the same item was added twice, it shows up twice */}
+        <ShoppingItem key={item.id + i*1000} ingredient_id={item.id} content={item.ingredient_text} userID={userID} getShoppingItems={getShoppingItems}/>
       </CSSTransition>
     )
   });

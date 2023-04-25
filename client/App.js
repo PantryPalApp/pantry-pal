@@ -8,6 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 
 const App = () => {
   //State to store our user ID
+  //real login would set a cookie along with some kind of cookie database and protected routes
   const [userID, setUserID] = useState(1)
   function userLogin(userID) {
     setUserID(userID);
@@ -24,6 +25,8 @@ const App = () => {
         <Route path='/recipes' element={<RecipesPage userID={userID}/>}/>
         {/* Items gets added to shopping list from the recipe card */}
         <Route path='/shopping-list' element={<ShoppingListPage userID={userID}/>}/>
+        {/* Error route if url doesnt exist */}
+        {/* <Route path='*' element={<ErrorPage userID={userID}/>}/> */}
       </Routes>
     </BrowserRouter>
 
